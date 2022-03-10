@@ -70,7 +70,7 @@ require("plugins.vimwiki")
 
 
 -- nvim-lspconfig
-require("plugins.nvim-lspconfig")
+-- require("plugins.nvim-lspconfig")
 
 -- gruvbox
 require("plugins.gruvbox")
