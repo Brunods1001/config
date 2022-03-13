@@ -35,6 +35,12 @@ require("packer").startup(
         -- nvim-lsp-installer
         use "williamboman/nvim-lsp-installer"
 
+        -- lspsaga
+        use "glepnir/lspsaga.nvim"
+
+        -- julia
+        use "JuliaEditorSupport/julia-vim"
+        
         -- nvim-cmp
         use "hrsh7th/nvim-cmp"
         use "hrsh7th/cmp-nvim-lsp"

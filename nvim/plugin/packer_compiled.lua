@@ -109,6 +109,16 @@ _G.packer_plugins = {
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
+  ["julia-vim"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/julia-vim",
+    url = "https://github.com/JuliaEditorSupport/julia-vim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/glepnir/lspsaga.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/nvim-cmp",
