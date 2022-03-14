@@ -55,3 +55,4 @@ function! OpenAsHTML()
     execute "!open '".fpath."'"
 endfunction
 ]])
+

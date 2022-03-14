@@ -1,10 +1,12 @@
-require("settings")
-require("plugins")
-require("maps")
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.colorscheme"
+require "user.cmp"
+require "user.lsp"
+require("user.fuzzyfinder")
+require("user.vimwiki")
+require("user.vimtest")
+require("user.debugger")
 
-vim.cmd([[
-colorscheme gruvbox
-set bg=dark
-let g:gruvbox_contrast_dark="hard"
-]])
 
