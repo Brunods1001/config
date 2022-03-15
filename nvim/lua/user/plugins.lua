@@ -78,6 +78,9 @@ return packer.startup(function(use)
     use "michal-h21/vim-zettel"
     use "mattn/calendar-vim"
     use "michal-h21/vimwiki-sync"
+
+    -- vim airline
+    use "vim-airline/vim-airline"
 end
 )
 
