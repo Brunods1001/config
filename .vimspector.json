@@ -1,0 +1,62 @@
+{
+    "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+    "configurations": {
+        "django-pytest-nearest": {
+            "adapter": "debugpy",
+            "configuration": {
+                "type": "vscode-python",
+                "request": "launch",
+                "python": "${VIRTUAL_ENV}/bin/python3",
+                "module": "pytest",
+                "args": [
+                    "${TestName}"
+                ],
+                "stopAtEntry": true
+            }
+        },
+        "django-test-nearest": {
+            "adapter": "debugpy",
+            "configuration": {
+                "type": "python",
+                "request": "launch",
+                "python": "${VIRTUAL_ENV}/bin/python3",
+                "django": true,
+                "program": "${workspaceRoot}/manage.py",
+                "args": [
+                    "test",
+                    "${TestName}"
+                ],
+                "stopAtEntry": true
+            }
+        },
+        "django-run-test": {
+            "adapter": "debugpy",
+            "configuration": {
+                "type": "python",
+                "request": "launch",
+                "python": "${VIRTUAL_ENV}/bin/python3",
+                "django": true,
+                "program": "${workspaceRoot}/manage.py",
+                "args": [
+                    "test",
+                    "${TEST_DOT_PATH}"
+                ],
+                "stopAtEntry": true
+            }
+        },
+        "django-runserver": {
+            "adapter": "debugpy",
+            "configuration": {
+                "request": "launch",
+                "python": "${VIRTUAL_ENV}/bin/python3",
+                "django": true,
+                "program": "${workspaceRoot}/manage.py",
+                "args": [
+                    "runserver",
+                    "--noreload"
+                ],
+                "stopAtEntry": true
+            }
+        }
+    }
+}

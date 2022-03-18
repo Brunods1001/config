@@ -27,8 +27,9 @@ vim.o.relativenumber = true
 vim.o.mouse = "a"
 vim.o.title = true
 
-vim.o.foldmethod = "indent"
+-- vim.o.foldmethod = "indent"
 
 vim.o.confirm = true
 
 
+vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'

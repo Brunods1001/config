@@ -139,15 +139,51 @@ _G.packer_plugins = {
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/romgrk/nvim-treesitter-context"
+  },
+  ["nvim-ts-context-commentstring"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
+  },
+  ["nvim-ts-rainbow"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+    url = "https://github.com/p00f/nvim-ts-rainbow"
+  },
+  ["packer.nvim"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["quick-scope"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/quick-scope",
+    url = "https://github.com/unblevable/quick-scope"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["twilight.nvim"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0" },
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/twilight.nvim",
+    url = "https://github.com/folke/twilight.nvim"
   },
   ["vim-airline"] = {
     loaded = true,
@@ -183,10 +219,24 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/vimwiki-sync",
     url = "https://github.com/michal-h21/vimwiki-sync"
+  },
+  ["zen-mode.nvim"] = {
+    config = { "\27LJ\2\n\v\0\1\1\0\0\0\1K\0\1\0\v\0\0\1\0\0\0\1K\0\1\0Ó\2\1\0\5\0\22\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\b\0005\4\a\0=\4\4\0035\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\3=\3\17\0023\3\18\0=\3\19\0023\3\20\0=\3\21\2B\0\2\1K\0\1\0\ron_close\0\fon_open\0\fplugins\nkitty\1\0\2\tfont\a+4\fenabled\1\ttmux\1\0\1\fenabled\1\rgitsigns\1\0\1\fenabled\1\rtwilight\1\0\1\fenabled\2\1\0\0\1\0\3\nruler\1\fenabled\2\fshowcmd\1\vwindow\1\0\0\foptions\1\0\3\nwidth\3x\rbackdrop\4æÌ™³\6æÌ¹ÿ\3\vheight\3\1\nsetup\rzen-mode\frequire\0" },
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
+    url = "https://github.com/folke/zen-mode.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: zen-mode.nvim
+time([[Config for zen-mode.nvim]], true)
+try_loadstring("\27LJ\2\n\v\0\1\1\0\0\0\1K\0\1\0\v\0\0\1\0\0\0\1K\0\1\0Ó\2\1\0\5\0\22\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\b\0005\4\a\0=\4\4\0035\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\3=\3\17\0023\3\18\0=\3\19\0023\3\20\0=\3\21\2B\0\2\1K\0\1\0\ron_close\0\fon_open\0\fplugins\nkitty\1\0\2\tfont\a+4\fenabled\1\ttmux\1\0\1\fenabled\1\rgitsigns\1\0\1\fenabled\1\rtwilight\1\0\1\fenabled\2\1\0\0\1\0\3\nruler\1\fenabled\2\fshowcmd\1\vwindow\1\0\0\foptions\1\0\3\nwidth\3x\rbackdrop\4æÌ™³\6æÌ¹ÿ\3\vheight\3\1\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
+time([[Config for zen-mode.nvim]], false)
+-- Config for: twilight.nvim
+time([[Config for twilight.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
+time([[Config for twilight.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
