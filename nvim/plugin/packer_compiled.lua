@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["JuliaFormatter.vim"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/JuliaFormatter.vim",
+    url = "https://github.com/kdheepak/JuliaFormatter.vim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -103,6 +108,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["efm-langserver"] = {
+    loaded = true,
+    path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/efm-langserver",
+    url = "https://github.com/mattn/efm-langserver"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -221,7 +231,7 @@ _G.packer_plugins = {
     url = "https://github.com/michal-h21/vimwiki-sync"
   },
   ["zen-mode.nvim"] = {
-    config = { "\27LJ\2\n\v\0\1\1\0\0\0\1K\0\1\0\v\0\0\1\0\0\0\1K\0\1\0Ó\2\1\0\5\0\22\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\b\0005\4\a\0=\4\4\0035\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\3=\3\17\0023\3\18\0=\3\19\0023\3\20\0=\3\21\2B\0\2\1K\0\1\0\ron_close\0\fon_open\0\fplugins\nkitty\1\0\2\tfont\a+4\fenabled\1\ttmux\1\0\1\fenabled\1\rgitsigns\1\0\1\fenabled\1\rtwilight\1\0\1\fenabled\2\1\0\0\1\0\3\nruler\1\fenabled\2\fshowcmd\1\vwindow\1\0\0\foptions\1\0\3\nwidth\3x\rbackdrop\4æÌ™³\6æÌ¹ÿ\3\vheight\3\1\nsetup\rzen-mode\frequire\0" },
+    config = { "\27LJ\2\n\v\0\1\1\0\0\0\1K\0\1\0\v\0\0\1\0\0\0\1K\0\1\0Ó\2\1\0\5\0\22\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\b\0005\4\a\0=\4\4\0035\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\3=\3\17\0023\3\18\0=\3\19\0023\3\20\0=\3\21\2B\0\2\1K\0\1\0\ron_close\0\fon_open\0\fplugins\nkitty\1\0\2\tfont\a+4\fenabled\1\ttmux\1\0\1\fenabled\1\rgitsigns\1\0\1\fenabled\1\rtwilight\1\0\1\fenabled\2\1\0\0\1\0\3\fshowcmd\1\nruler\1\fenabled\2\vwindow\1\0\0\foptions\1\0\3\vheight\3\1\nwidth\3x\rbackdrop\4æÌ™³\6æÌ¹ÿ\3\nsetup\rzen-mode\frequire\0" },
     loaded = true,
     path = "/Users/L021136/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
     url = "https://github.com/folke/zen-mode.nvim"
@@ -231,7 +241,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\1\1\0\0\0\1K\0\1\0\v\0\0\1\0\0\0\1K\0\1\0Ó\2\1\0\5\0\22\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\b\0005\4\a\0=\4\4\0035\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\3=\3\17\0023\3\18\0=\3\19\0023\3\20\0=\3\21\2B\0\2\1K\0\1\0\ron_close\0\fon_open\0\fplugins\nkitty\1\0\2\tfont\a+4\fenabled\1\ttmux\1\0\1\fenabled\1\rgitsigns\1\0\1\fenabled\1\rtwilight\1\0\1\fenabled\2\1\0\0\1\0\3\nruler\1\fenabled\2\fshowcmd\1\vwindow\1\0\0\foptions\1\0\3\nwidth\3x\rbackdrop\4æÌ™³\6æÌ¹ÿ\3\vheight\3\1\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
+try_loadstring("\27LJ\2\n\v\0\1\1\0\0\0\1K\0\1\0\v\0\0\1\0\0\0\1K\0\1\0Ó\2\1\0\5\0\22\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\b\0005\4\a\0=\4\4\0035\4\t\0=\4\n\0035\4\v\0=\4\f\0035\4\r\0=\4\14\0035\4\15\0=\4\16\3=\3\17\0023\3\18\0=\3\19\0023\3\20\0=\3\21\2B\0\2\1K\0\1\0\ron_close\0\fon_open\0\fplugins\nkitty\1\0\2\tfont\a+4\fenabled\1\ttmux\1\0\1\fenabled\1\rgitsigns\1\0\1\fenabled\1\rtwilight\1\0\1\fenabled\2\1\0\0\1\0\3\fshowcmd\1\nruler\1\fenabled\2\vwindow\1\0\0\foptions\1\0\3\vheight\3\1\nwidth\3x\rbackdrop\4æÌ™³\6æÌ¹ÿ\3\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
 -- Config for: twilight.nvim
 time([[Config for twilight.nvim]], true)

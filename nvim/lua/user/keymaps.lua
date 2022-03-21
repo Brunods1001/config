@@ -1,7 +1,7 @@
 local map = vim.api.nvim_set_keymap
 local options = { noremap = true }
 
-map("", "<Space>", "<Nop>", options)
+-- map("", "<Space>", "<Nop>", options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

@@ -52,6 +52,7 @@ return packer.startup(function(use)
 	-- LSP
 	use "neovim/nvim-lspconfig"
 	use "williamboman/nvim-lsp-installer"
+    use "mattn/efm-langserver"
 
 	-- snippets
 	use "L3MON4D3/LuaSnip" --snippet engine
@@ -165,6 +166,9 @@ return packer.startup(function(use)
 
     -- quick-scope
     use "unblevable/quick-scope"
+
+    -- Julia formatting
+    use "kdheepak/JuliaFormatter.vim"
 
 end
 )

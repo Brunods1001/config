@@ -59,5 +59,25 @@ let g:test#custom_strategies = {'phpunit': function('PHPUnitStrategy')}
 
 " set termguicolors
 hi Twilight ctermfg=8
+" Use ESC to exit insert mode in :term
+tnoremap <Esc> <C-\><C-n><CR>
+
+
+]])
+
+-- Julia Formatter
+require"lspconfig".efm.setup {
+    init_options = {documentFormatting = true},
+    filetypes = {"julia"},
+    settings = {
+        rootMarkers = {".git/"},
+        languages = {
+            julia = {require("juliaformatter").efmConfig}
+        }
+    }
+}
+
+vim.cmd([[
+autocmd BufWritePre *.jl lua vim.lsp.buf.formatting_sync()
 ]])
 
