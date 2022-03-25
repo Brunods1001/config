@@ -66,6 +66,7 @@ tnoremap <Esc> <C-\><C-n><CR>
 ]])
 
 -- Julia Formatter
+--[[
 require"lspconfig".efm.setup {
     init_options = {documentFormatting = true},
     filetypes = {"julia"},
@@ -76,8 +77,18 @@ require"lspconfig".efm.setup {
         }
     }
 }
+]]--
 
 vim.cmd([[
 autocmd BufWritePre *.jl lua vim.lsp.buf.formatting_sync()
 ]])
 
+
+-- C Programming
+vim.cmd([[
+set softtabstop=4
+nnoremap <leader>cc :set colorcolumn=80<cr>
+nnoremap <leader>ncc :set colorcolumn-=80<cr>
+set autoindent
+set smartindent
+]])
