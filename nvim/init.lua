@@ -9,6 +9,7 @@ require "user.vimwiki"
 require "user.vimtest"
 require "user.debugger"
 require "user.treesitter"
+require "user.slime"
 
 
 vim.cmd([[

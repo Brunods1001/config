@@ -170,6 +170,9 @@ return packer.startup(function(use)
     -- Julia formatting
     use "kdheepak/JuliaFormatter.vim"
 
+    -- Slime
+    use "jpalardy/vim-slime"
+
 end
 )
 
