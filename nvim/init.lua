@@ -56,6 +56,7 @@ function! DjangoStrategy(cmd)
 endfunction
 
 let g:test#custom_strategies = {'phpunit': function('PHPUnitStrategy')}
+let g:test#custom_strategies = {'django_test': function('DjangoStrategy')}
 
 
 " set termguicolors
@@ -92,4 +93,8 @@ nnoremap <leader>cc :set colorcolumn=80<cr>
 nnoremap <leader>ncc :set colorcolumn-=80<cr>
 set autoindent
 set smartindent
+]])
+
+vim.cmd([[
+set colorcolumn=80
 ]])

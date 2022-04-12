@@ -15,7 +15,7 @@ configs.setup {
     disable = { "" }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "yaml", "python", "javascript", "rust", "julia" } },
+  indent = { enable = true, disable = { "yaml", "python", "javascript", "rust", "julia", "go" } },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,

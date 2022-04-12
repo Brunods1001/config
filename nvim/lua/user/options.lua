@@ -33,3 +33,5 @@ vim.o.confirm = true
 
 
 vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+
+vim.g.colorcolumn = 80
