@@ -1,0 +1,10 @@
+{
+    "julia.environmentPath": ".",
+    "julia.lint.missingrefs": false,
+    "languageserver": {
+        "julia": {
+            "command": "/usr/local/bin/julia",
+            "filetypes": ["julia"]
+        }
+    }
+}

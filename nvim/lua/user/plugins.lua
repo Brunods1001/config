@@ -60,6 +60,7 @@ return packer.startup(function(use)
 
     -- colorschemes
     use "morhetz/gruvbox"
+    use "sainnhe/sonokai"
 
     -- fuzzyfinder
     use "junegunn/fzf"
@@ -167,7 +168,8 @@ return packer.startup(function(use)
     -- quick-scope
     use "unblevable/quick-scope"
 
-    -- Julia formatting
+    -- Julia 
+    use "JuliaEditorSupport/julia-vim"
     use "kdheepak/JuliaFormatter.vim"
 
     -- Slime
