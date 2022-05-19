@@ -3,13 +3,14 @@ require "user.keymaps"
 require "user.plugins"
 require "user.colorscheme"
 require "user.cmp"
-require "user.lsp"
+--require "user.lsp"
 require "user.fuzzyfinder"
 require "user.vimwiki"
 require "user.vimtest"
 require "user.debugger"
-require "user.treesitter"
+--require "user.treesitter"
 require "user.slime"
+require "user.copilot"
 
 
 vim.cmd([[
@@ -43,11 +44,11 @@ function! PytestStrategy(cmd)
   call vimspector#LaunchWithSettings( #{ configuration: 'pytest', TestName: testName } )
 endfunction
 
-function! DjangoPytestStrategy(cmd)
+function! PytestStrategy(cmd)
   let testName = matchlist(a:cmd, '\v -t ''(.*)''')
     let testName = ParsePytestCommand(a:cmd)
     "echo testName
-    call vimspector#LaunchWithSettings( #{ configuration: 'django-pytest-nearest', TestName: testName } )
+    call vimspector#LaunchWithSettings( #{ configuration: 'pytest-nearest', TestName: testName } )
 endfunction
 
 function! DjangoStrategy(cmd)
@@ -57,6 +58,7 @@ endfunction
 
 let g:test#custom_strategies = {'phpunit': function('PHPUnitStrategy')}
 let g:test#custom_strategies = {'django_test': function('DjangoStrategy')}
+let g:test#custom_strategies = {'pytest': function('PytestStrategy')}
 
 
 " set termguicolors

@@ -5,8 +5,31 @@ let g:vimwiki_sync_commit_message = 'Auto commit + push. %c'
 ]])
 
 -- vimwiki
+local nested_syntaxes = {}
+nested_syntaxes['python'] = 'python'
+nested_syntaxes['c++'] = 'cpp'
+nested_syntaxes['julia'] = 'julia'
+vim.g.vimwiki_list = {
+            {
+                path ='~/journal/wiki/', 
+                syntax = 'default',
+                ext = '.wiki',
+                template_path = '~/journal/wiki/templates',
+                template_default = 'default',
+                nested_syntaxes = nested_syntaxes
+            },
+            {
+                path ='~/second_brain/', 
+                syntax = 'markdown',
+                ext = '.md',
+                template_path = '~/second_brain/templates',
+                template_default = 'default',
+                nested_syntaxes = nested_syntaxes,
+                diary_rel_path = "journal/"
+            }
+        }
+
 vim.cmd([[
-let g:vimwiki_list = [{'path': '~/journal/wiki/', 'syntax': 'default', 'template_path': '~/journal/wiki/templates', 'template_default': 'default'}]
 au FileType vimwiki setlocal shiftwidth=4 tabstop=4 noexpandtab
 let g:vimwiki_listsyms = ' ○◐●✓'
 

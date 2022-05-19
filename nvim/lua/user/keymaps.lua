@@ -18,7 +18,10 @@ map("n", "<leader>v", ":vsplit<CR>", options)
 
 map("n", "<LEFT>", ":bprev<CR>", options)
 map("n", "<RIGHT>", ":bnext<CR>", options)
-map("n", "<BACKSPACE>", ":bdelete<CR>", options)
+map("n", "<BACKSPACE>", ":bp|bd #<CR>", options)
+map("n", "<leader><LEFT>", ":bprev<CR>", options)
+map("n", "<leader><RIGHT>", ":bnext<CR>", options)
+map("n", "<leader><BACKSPACE>", ":bp|bd #<CR>", options)
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

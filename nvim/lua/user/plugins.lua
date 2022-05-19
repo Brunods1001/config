@@ -95,6 +95,9 @@ return packer.startup(function(use)
     use "p00f/nvim-ts-rainbow"
     use "romgrk/nvim-treesitter-context"
 
+    -- Git blame
+    use "f-person/git-blame.nvim"
+
     -- Twilight
     use {
       "folke/twilight.nvim",
@@ -174,6 +177,9 @@ return packer.startup(function(use)
 
     -- Slime
     use "jpalardy/vim-slime"
+
+    -- Copilot
+    use "github/copilot.vim"
 
 end
 )
