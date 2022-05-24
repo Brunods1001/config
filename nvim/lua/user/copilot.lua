@@ -14,6 +14,7 @@ vim.g.copilot_filetypes = {
     ["python"] = true,
     ["php"] = true,
     ["html"] = true,
+    ["julia"] = true,
   }
 
   vim.g.copilot_assume_mapped = true
