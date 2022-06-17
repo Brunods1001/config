@@ -81,7 +81,7 @@ require"lspconfig".efm.setup {
         }
     }
 }
-]]--
+]] --
 
 vim.cmd([[
 autocmd BufWritePre *.jl lua vim.lsp.buf.formatting_sync()
@@ -100,3 +100,18 @@ set smartindent
 vim.cmd([[
 set colorcolumn=80
 ]])
+
+-- LSP format on save
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
+-- Julia LSP
+-- require 'lspconfig'.julials.setup {}
+
+--[[require 'lspconfig'.julials.setup {
+    settings = {
+        julials = {
+            enableTelemetry = "true",
+            executablePath = "/usr/local/bin/julia"
+        }
+    }
+}]] --

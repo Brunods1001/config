@@ -4,6 +4,7 @@ vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true,
 vim.g.copilot_filetypes = {
     ["*"] = false,
     ["javascript"] = true,
+    ["elm"] = true,
     ["typescript"] = true,
     ["lua"] = false,
     ["rust"] = true,
@@ -15,6 +16,7 @@ vim.g.copilot_filetypes = {
     ["php"] = true,
     ["html"] = true,
     ["julia"] = true,
+    ["sql"] = true,
   }
 
   vim.g.copilot_assume_mapped = true
