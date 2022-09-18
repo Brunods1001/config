@@ -1,5 +1,7 @@
 local map = vim.api.nvim_set_keymap
 local options = { noremap = true }
+local opts = { noremap = true, silent = true }
+
 
 -- map("", "<Space>", "<Nop>", options)
 vim.g.mapleader = " "
@@ -16,17 +18,37 @@ map("n", "<leader>l", "<C-w>l", options)
 map("n", "<leader>s", ":split<CR>", options)
 map("n", "<leader>v", ":vsplit<CR>", options)
 
-map("n", "<LEFT>", ":bprev<CR>", options)
-map("n", "<RIGHT>", ":bnext<CR>", options)
+map("n", "<C-h>", ":bprev<CR>", options)
+map("n", "<C-l>", ":bnext<CR>", options)
 map("n", "<BACKSPACE>", ":bp|bd #<CR>", options)
-map("n", "<leader><LEFT>", ":bprev<CR>", options)
-map("n", "<leader><RIGHT>", ":bnext<CR>", options)
-map("n", "<leader><BACKSPACE>", ":bp|bd #<CR>", options)
 
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
--- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+vim.cmd([[
+" Use ESC to exit insert mode in :term
+tnoremap <Esc> <C-\><C-n><CR>
+]])
+
+-- Telescope
+map(
+"n",
+"<tab>",
+"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+opts
+)
+map(
+  "n",
+  "<s-tab>",
+  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>",
+  opts
+)
+map("n", "<leader>fg", ":GFiles<CR>", options)
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", options)
+map("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", options)
+map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", options)
+map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", options)
+
+-- Nvimtree
+map("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+
+-- Comment
+map("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
+map("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
