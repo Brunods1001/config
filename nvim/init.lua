@@ -12,3 +12,8 @@ require "user/telescope";
 require "user/illuminate";
 require "user/nvimtree";
 require "user/comment";
+require "user/gitsigns";
+-- require "user/navic";
+-- require "user/winbar";
+require "user/bufferline";
+require "user/whichkey";

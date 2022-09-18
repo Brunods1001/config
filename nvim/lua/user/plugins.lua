@@ -119,4 +119,24 @@ return require("packer").startup(function(use)
     use "mattn/vim-gist"
     use "mattn/webapi-vim"
 
+    -- statusline
+    -- use {
+    --     "SmiteshP/nvim-navic",
+    --     requires = "neovim/nvim-lspconfig"
+    -- }
+
+    -- using packer.nvim
+    use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+
+    -- whichkey
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
 end)
