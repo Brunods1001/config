@@ -1,4 +1,3 @@
-vim.o.hidden = true -- hides buffers (needed for toggleterm)
 vim.o.backup = false
 vim.o.wrap = true
 vim.o.showcmd = true
@@ -41,7 +40,7 @@ vim.o.foldnestmax = 3
 
 -- misc
 vim.o.confirm = true
-vim.o.hidden = false
+vim.o.hidden = true -- hides buffers (needed for toggleterm)
 vim.o.swapfile = false
 
 vim.cmd([[
