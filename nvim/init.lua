@@ -6,6 +6,7 @@ require "user/colors";
 require "user/treesitter";
 require "user/autopairs";
 require "user/cmp";
+require "user.lsp-inlayhints"
 require "user/lsp";
 require "user/toggleterm";
 require "user/telescope";
@@ -17,3 +18,4 @@ require "user/gitsigns";
 -- require "user/winbar";
 require "user/bufferline";
 require "user/whichkey";
+

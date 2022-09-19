@@ -49,11 +49,20 @@ return require("packer").startup(function(use)
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
     use "hrsh7th/cmp-nvim-lsp"
-    use "saadparwaiz1/cmp_luasnip" -- snippet completions
+    use "L3MON4D3/LuaSnip"
+    use "saadparwaiz1/cmp_luasnip"
 
     -- LSP
-    use "neovim/nvim-lspconfig"
-    use "williamboman/nvim-lsp-installer"
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        -- "williamboman/nvim-lsp-installer",
+        "neovim/nvim-lspconfig",
+    }
+    use 'simrat39/rust-tools.nvim'
+    use "lvimuser/lsp-inlayhints.nvim"
+    use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+    -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
     -- Toggleterm
     use { "akinsho/toggleterm.nvim", tag = '*', config = function()
@@ -139,4 +148,7 @@ return require("packer").startup(function(use)
             }
         end
     }
+
+    -- css
+    use "ap/vim-css-color"
 end)

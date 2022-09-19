@@ -111,7 +111,7 @@ local mappings = {
   -- },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   -- ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No HL" },
+  -- ["h"] = { "<cmd>nohlsearch<CR>", "No HL" },
   -- ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
   -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
@@ -222,7 +222,7 @@ local mappings = {
     },
   },
 
-  l = {
+  L = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
