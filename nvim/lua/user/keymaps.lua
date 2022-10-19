@@ -7,19 +7,22 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-map("n", "<leader>w", ":w<CR>", options)
-map("n", "<leader>q", ":q<CR>", options)
+-- change directory
+map("n", "<leader>cd", ":cd %:p:h<CR>", options)
 
-map("n", "<leader>h", "<C-w>h", options)
-map("n", "<leader>j", "<C-w>j", options)
-map("n", "<leader>k", "<C-w>k", options)
-map("n", "<leader>l", "<C-w>l", options)
+map("n", "<C-w>", ":w<CR>", options)
+map("n", "<C-q>", ":q<CR>", options)
 
-map("n", "<leader>s", ":split<CR>", options)
-map("n", "<leader>v", ":vsplit<CR>", options)
+map("n", "<C-h>", "<C-w>h", options)
+map("n", "<C-j>", "<C-w>j", options)
+map("n", "<C-k>", "<C-w>k", options)
+map("n", "<C-l>", "<C-w>l", options)
 
-map("n", "<C-h>", ":bprev<CR>", options)
-map("n", "<C-l>", ":bnext<CR>", options)
+map("n", "<C-s>", ":split<CR>", options)
+map("n", "<C-v>", ":vsplit<CR>", options)
+
+map("n", "<leader><Left>", ":bprev<CR>", options)
+map("n", "<leader><Right>", ":bnext<CR>", options)
 map("n", "<BACKSPACE>", ":bp|bd #<CR>", options)
 
 vim.cmd([[
@@ -52,3 +55,11 @@ map("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Comment
 map("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 map("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
+
+-- Maximizer
+map("n", "<C-m>", ":MaximizerToggle<CR>", opts)
+-- map("i", "<C-m>", ":MaximizerToggle<CR>", opts)
+-- map("v", "<C-m>", ":MaximizerToggle<CR>", opts)
+
+-- Presentation
+map("n", "<C-]>v", ":set spell! spelllang=en_us<CR>", opts)

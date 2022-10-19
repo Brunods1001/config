@@ -28,6 +28,7 @@ return require("packer").startup(function(use)
 
     -- colorscheme
     use "sainnhe/sonokai"
+    use 'folke/tokyonight.nvim'
 
     -- FZF
     use "junegunn/fzf"
@@ -49,20 +50,24 @@ return require("packer").startup(function(use)
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
     use "hrsh7th/cmp-nvim-lsp"
+    -- use "hrsh7th/cmp-nvim-lsp-signature-help"
     use "L3MON4D3/LuaSnip"
     use "saadparwaiz1/cmp_luasnip"
 
     -- LSP
     use {
+        "neovim/nvim-lspconfig",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         -- "williamboman/nvim-lsp-installer",
-        "neovim/nvim-lspconfig",
     }
     use 'simrat39/rust-tools.nvim'
     use "lvimuser/lsp-inlayhints.nvim"
     use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
     -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+
+    -- LSP Signature
+    use "ray-x/lsp_signature.nvim"
 
     -- Toggleterm
     use { "akinsho/toggleterm.nvim", tag = '*', config = function()
@@ -127,6 +132,17 @@ return require("packer").startup(function(use)
     use "ruifm/gitlinker.nvim"
     use "mattn/vim-gist"
     use "mattn/webapi-vim"
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            'kyazdani42/nvim-web-devicons',
+        },
+        config = function()
+            require "octo".setup()
+        end
+    }
 
     -- statusline
     -- use {
@@ -151,4 +167,25 @@ return require("packer").startup(function(use)
 
     -- css
     use "ap/vim-css-color"
+
+    -- Julia
+    use "JuliaEditorSupport/julia-vim"
+
+    -- Maximize panes
+    use "szw/vim-maximizer"
+
+    -- Buffers
+    use 'matbme/JABS.nvim'
+
+    -- Debugging
+    use 'mfussenegger/nvim-dap'
+    use 'leoluz/nvim-dap-go'
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'nvim-telescope/telescope-dap.nvim'
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+
+    -- Presentations
+    use 'gyim/vim-boxdraw'
+
+
 end)
