@@ -61,6 +61,10 @@ return require("packer").startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         -- "williamboman/nvim-lsp-installer",
     }
+<<<<<<< HEAD
+    use "rust-lang/rust.vim"
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     use 'simrat39/rust-tools.nvim'
     use "lvimuser/lsp-inlayhints.nvim"
     use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
@@ -183,6 +187,10 @@ return require("packer").startup(function(use)
     use 'theHamsta/nvim-dap-virtual-text'
     use 'nvim-telescope/telescope-dap.nvim'
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+<<<<<<< HEAD
+    use 'mfussenegger/nvim-dap-python'
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
 
     -- Presentations
     use 'gyim/vim-boxdraw'

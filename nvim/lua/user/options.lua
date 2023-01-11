@@ -31,7 +31,11 @@ vim.o.relativenumber = true
 vim.o.errorbells = false
 vim.o.mouse = "a"
 vim.o.title = true
+<<<<<<< HEAD
+vim.opt.colorcolumn = "112"
+=======
 vim.opt.colorcolumn = "80"
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
 
 -- code folding
 vim.o.foldenable = false

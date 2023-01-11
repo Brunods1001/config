@@ -21,8 +21,13 @@ map("n", "<C-l>", "<C-w>l", options)
 map("n", "<C-s>", ":split<CR>", options)
 map("n", "<C-v>", ":vsplit<CR>", options)
 
+<<<<<<< HEAD
+map("n", "<S-h>", ":bprev<CR>", options)
+map("n", "<S-l>", ":bnext<CR>", options)
+=======
 map("n", "<leader><Left>", ":bprev<CR>", options)
 map("n", "<leader><Right>", ":bnext<CR>", options)
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
 map("n", "<BACKSPACE>", ":bp|bd #<CR>", options)
 
 vim.cmd([[
@@ -63,3 +68,28 @@ map("n", "<C-m>", ":MaximizerToggle<CR>", opts)
 
 -- Presentation
 map("n", "<C-]>v", ":set spell! spelllang=en_us<CR>", opts)
+<<<<<<< HEAD
+--
+-- Copilot
+-- vim.g.copilot_filetypes = {
+--   ["*"] = false,
+-- }
+
+vim.cmd [[
+  imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")
+  let g:copilot_no_tab_map = v:true
+]]
+
+
+-- ToggleTerm
+-- ToggleTermSendCurrentLine
+map("n", "<leader>tl", ":ToggleTermSendCurrentLine<CR>", opts)
+-- ToggleTermSendVisualSelection
+map("v", "<leader>tt", ":ToggleTermSendVisualSelection<CR>", opts)
+-- ToggleTermSendVisualLines
+map("n", "<leader>tv", ":ToggleTermSendVisualLines<CR>", opts)
+-- Select all text in file
+map("n", "<leader>ta", "ggVG:ToggleTermSendVisualSelection<CR><C-o>", opts)
+
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580

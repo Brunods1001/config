@@ -14,7 +14,11 @@ require'nvim-treesitter.configs'.setup {
   },
     indent = {
         enable = true,
+<<<<<<< HEAD
+        disable = { "python", "julia" }
+=======
         disable = { "julia" }
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     },
     autopairs = {
         enable = true

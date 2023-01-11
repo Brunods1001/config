@@ -69,7 +69,10 @@ mason_lspconfig.setup {
 local opts = {}
 
 for _, server in pairs(servers) do
+<<<<<<< HEAD
+=======
     vim.notify(server)
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     opts = {
         on_attach = require("user.lsp.handlers").on_attach,
         capabilities = require("user.lsp.handlers").capabilities,
@@ -80,11 +83,19 @@ for _, server in pairs(servers) do
     if server == "jsonls" then
         local jsonls_opts = require "user.lsp.settings.jsonls"
         opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+<<<<<<< HEAD
+        goto continue
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
     if server == "yamlls" then
         -- local yamlls_opts = require "user.lsp.settings.yamlls"
         -- opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+<<<<<<< HEAD
+        goto continue
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
 
@@ -106,32 +117,62 @@ for _, server in pairs(servers) do
         --   },
         -- }
         -- lspconfig.sumneko_lua.setup(luadev)
+<<<<<<< HEAD
+        goto continue
+=======
         --goto continue
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
     if server == "tsserver" then
         -- local tsserver_opts = require "user.lsp.settings.tsserver"
         -- opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+<<<<<<< HEAD
+        goto continue
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
     if server == "pyright" then
         --local pyright_opts = require "user.lsp.settings.pyright"
         --opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+<<<<<<< HEAD
+        goto continue
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
     if server == "solc" then
         -- local solc_opts = require "user.lsp.settings.solc"
         -- opts = vim.tbl_deep_extend("force", solc_opts, opts)
+<<<<<<< HEAD
+        goto continue
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
     if server == "emmet_ls" then
         -- local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
         -- opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
+<<<<<<< HEAD
+        goto continue
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
     if server == "zk" then
         -- local zk_opts = require "user.lsp.settings.zk"
         -- opts = vim.tbl_deep_extend("force", zk_opts, opts)
+<<<<<<< HEAD
+        goto continue
+    end
+
+    if server == "jdtls" then
+        goto continue
+    end
+
+    if server == "julials" then
+=======
     end
 
     if server == "jdtls" then
@@ -140,6 +181,7 @@ for _, server in pairs(servers) do
 
     if server == "julials" then
         vim.notify("Loading julials")
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
         -- local function lsp_setup(name, config)
         --   lspconfig[name].setup(config)
         -- end
@@ -149,6 +191,65 @@ for _, server in pairs(servers) do
         --   capabilities = create_capabilities(),
         -- })
 
+<<<<<<< HEAD
+        goto continue
+    end
+
+    if server == "marksman" then
+        goto continue
+    end
+
+    if server == "rust_analyzer" then
+        -- local rust_opts = require "user.lsp.settings.rust"
+        -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
+        local rust_tools_status_ok, rt = pcall(require, "rust-tools")
+        if not rust_tools_status_ok then
+            vim.notify("rust-tools not found!")
+            return
+        end
+        -- Update this path
+        local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/'
+        local codelldb_path = extension_path .. 'adapter/codelldb'
+        local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+
+
+        rt.setup({
+            -- dap = {
+            --     adapter = {
+            --         type = "executable",
+            --         command = "/Users/L021136/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/adapter/codelldb",
+            --         name = "rt_lldb",
+            --     },
+            -- },
+            dap = {
+                adapter = require('rust-tools.dap').get_codelldb_adapter(
+                    codelldb_path, liblldb_path)
+            },
+            server = {
+                on_attach = function(_, bufnr)
+                    -- Hover actions
+                    vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+                    -- Code action groups
+                    vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+                end,
+                settings = {
+                    ["rust-analyzer"] = {
+                        assist = {
+                            importGranularity = "module",
+                            importPrefix = "by_self",
+                        },
+                        cargo = {
+                            loadOutDirsFromCheck = true,
+                        },
+                        procMacro = {
+                            enable = true,
+                        },
+                    },
+                }
+            },
+        })
+        goto eof
+=======
     end
 
     if server == "marksman" then
@@ -165,10 +266,15 @@ for _, server in pairs(servers) do
 
         rust_tools.setup(rust_opts)
         goto continue
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     end
 
     ::continue::
     lspconfig[server].setup(opts)
+<<<<<<< HEAD
+    ::eof::
+=======
+>>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
 end
 
 -- TODO: add something to installer later
