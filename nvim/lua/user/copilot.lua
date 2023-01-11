@@ -1,4 +1,12 @@
 -- For copilot.vim
+-- vim.g.copilot_filetypes = {
+--   ["*"] = false,
+-- }
+
+-- vim.cmd [[
+--   imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")
+--   let g:copilot_no_tab_map = v:true
+-- ]]
 
 local status_ok, copilot = pcall(require, "copilot")
 if not status_ok then
@@ -25,25 +33,3 @@ copilot.setup {
     },
   },
 }
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-
-vim.g.copilot_filetypes = {
-    ["*"] = false,
-    ["javascript"] = true,
-    ["elm"] = true,
-    ["typescript"] = true,
-    ["lua"] = false,
-    ["rust"] = true,
-    ["c"] = true,
-    ["c#"] = true,
-    ["c++"] = true,
-    ["go"] = true,
-    ["python"] = true,
-    ["php"] = true,
-    ["html"] = true,
-    ["julia"] = true,
-    ["sql"] = true,
-  }
-
-  vim.g.copilot_assume_mapped = true

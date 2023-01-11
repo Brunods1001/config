@@ -22,3 +22,4 @@ lsp_installer.on_server_ready(
 	server:setup(opts)
 end
 )
+

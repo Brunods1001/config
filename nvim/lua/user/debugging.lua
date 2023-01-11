@@ -11,7 +11,6 @@ local dap = canuse("dap")
 
 if dap then
     local dap_go = canuse("dap-go")
-    local dap_py = canuse("dap-python")
     local dapui = canuse("dapui")
     local icons = canuse("user.icons")
 
@@ -82,13 +81,6 @@ if dap then
         })
     end
 
-    -- dap python setup
-    if dap_py then
-        local pyv = "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
-        dap_py.setup(pyv)
-        dap_py.test_runner = 'pytest'
-    end
-
     -- dap setup
     vim.fn.sign_define("DapBreakpoint", { text = icons.ui.Bug, texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
@@ -101,4 +93,5 @@ if dap then
     dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close {}
     end
+
 end

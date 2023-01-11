@@ -1,126 +1,174 @@
-return {
-  tools = {
-    -- autoSetHints = false,
-    on_initialized = function()
-      vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
-        pattern = { "*.rs" },
-        callback = function()
-          vim.lsp.codelens.refresh()
-        end,
-      })
-    end,
+local extension_path = "~/.vscode/extensions/vadimcn.vscode-lldb-1.8.1"
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
 
-    auto = false,
-    inlay_hints = {
-      -- Only show inlay hints for the current line
-      only_current_line = false,
-      auto = false,
+local opts = {
+    tools = { -- rust-tools options
 
-      -- Event which triggers a refersh of the inlay hints.
-      -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
-      -- not that this may cause higher CPU usage.
-      -- This option is only respected when only_current_line and
-      -- autoSetHints both are true.
-      only_current_line_autocmd = "CursorHold",
+        -- how to execute terminal commands
+        -- options right now: termopen / quickfix
+        executor = require("rust-tools/executors").termopen,
 
-      -- whether to show parameter hints with the inlay hints or not
-      -- default: true
-      show_parameter_hints = true,
+        -- callback to execute once rust-analyzer is done initializing the workspace
+        -- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
+        on_initialized = nil,
 
-      -- whether to show variable name before type hints with the inlay hints or not
-      -- default: false
-      show_variable_name = false,
+        -- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
+        reload_workspace_from_cargo_toml = true,
 
-      -- prefix for parameter hints
-      -- default: "<-"
-      -- parameter_hints_prefix = "<- ",
-      parameter_hints_prefix = " ",
+        -- These apply to the default RustSetInlayHints command
+        inlay_hints = {
+            -- automatically set inlay hints (type hints)
+            -- default: true
+            auto = true,
 
-      -- prefix for all the other hints (type, chaining)
-      -- default: "=>"
-      -- other_hints_prefix = "=> ",
-      other_hints_prefix = " ",
+            -- Only show inlay hints for the current line
+            only_current_line = false,
 
-      -- whether to align to the lenght of the longest line in the file
-      max_len_align = true,
+            -- whether to show parameter hints with the inlay hints or not
+            -- default: true
+            show_parameter_hints = true,
 
-      -- padding from the left if max_len_align is true
-      max_len_align_padding = 1,
+            -- prefix for parameter hints
+            -- default: "<-"
+            parameter_hints_prefix = "<- ",
 
-      -- whether to align to the extreme right or not
-      right_align = false,
+            -- prefix for all the other hints (type, chaining)
+            -- default: "=>"
+            other_hints_prefix = "=> ",
 
-      -- padding from the right if right_align is true
-      right_align_padding = 7,
+            -- whether to align to the length of the longest line in the file
+            max_len_align = false,
 
-      -- The color of the hints
-      highlight = "Comment",
-    },
-    hover_actions = {
-      auto_focus = false,
-      border = "rounded",
-      width = 60,
-      -- height = 30,
-    },
-  },
-  server = {
-    --[[
-        $ mkdir -p ~/.local/bin
-        $ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-        $ chmod +x ~/.local/bin/rust-analyzer
-    --]]
-    -- cmd = { os.getenv "HOME" .. "/.local/bin/rust-analyzer" },
-    cmd = { "rustup", "run", "nightly", os.getenv "HOME" .. "/.local/bin/rust-analyzer" },
-    on_attach = require("user.lsp.handlers").on_attach,
-    capabilities = require("user.lsp.handlers").capabilities,
+            -- padding from the left if max_len_align is true
+            max_len_align_padding = 1,
 
-    settings = {
-      ["rust-analyzer"] = {
-        lens = {
-          enable = true,
+            -- whether to align to the extreme right or not
+            right_align = false,
+
+            -- padding from the right if right_align is true
+            right_align_padding = 7,
+
+            -- The color of the hints
+            highlight = "Comment",
         },
-        checkOnSave = {
-          command = "clippy",
+
+        -- options same as lsp hover / vim.lsp.util.open_floating_preview()
+        hover_actions = {
+
+            -- the border that is used for the hover window
+            -- see vim.api.nvim_open_win()
+            border = {
+                { "╭", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "╮", "FloatBorder" },
+                { "│", "FloatBorder" },
+                { "╯", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "╰", "FloatBorder" },
+                { "│", "FloatBorder" },
+            },
+
+            -- whether the hover action window gets automatically focused
+            -- default: false
+            auto_focus = false,
         },
-      },
+
+        -- settings for showing the crate graph based on graphviz and the dot
+        -- command
+        crate_graph = {
+            -- Backend used for displaying the graph
+            -- see: https://graphviz.org/docs/outputs/
+            -- default: x11
+            backend = "x11",
+            -- where to store the output, nil for no output stored (relative
+            -- path from pwd)
+            -- default: nil
+            output = nil,
+            -- true for all crates.io and external crates, false only the local
+            -- crates
+            -- default: true
+            full = true,
+
+            -- List of backends found on: https://graphviz.org/docs/outputs/
+            -- Is used for input validation and autocompletion
+            -- Last updated: 2021-08-26
+            enabled_graphviz_backends = {
+                "bmp",
+                "cgimage",
+                "canon",
+                "dot",
+                "gv",
+                "xdot",
+                "xdot1.2",
+                "xdot1.4",
+                "eps",
+                "exr",
+                "fig",
+                "gd",
+                "gd2",
+                "gif",
+                "gtk",
+                "ico",
+                "cmap",
+                "ismap",
+                "imap",
+                "cmapx",
+                "imap_np",
+                "cmapx_np",
+                "jpg",
+                "jpeg",
+                "jpe",
+                "jp2",
+                "json",
+                "json0",
+                "dot_json",
+                "xdot_json",
+                "pdf",
+                "pic",
+                "pct",
+                "pict",
+                "plain",
+                "plain-ext",
+                "png",
+                "pov",
+                "ps",
+                "ps2",
+                "psd",
+                "sgi",
+                "svg",
+                "svgz",
+                "tga",
+                "tiff",
+                "tif",
+                "tk",
+                "vml",
+                "vmlz",
+                "wbmp",
+                "webp",
+                "xlib",
+                "x11",
+            },
+        },
     },
-  },
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    server = {
+        -- standalone file support
+        -- setting it to false may improve startup time
+        standalone = true,
+    }, -- rust-analyzer options
+
+    -- debugging stuff
+    dap = {
+        adapter = require("rust-tools.dap").get_codelldb_adapter(
+            codelldb_path,
+            liblldb_path
+        ),
+    },
 }
--- return {
---   settings = {
---     rust_analyzer = {
---       inlayHints = {
---         bindingModeHints = {
---           enable = true,
---         },
---         typeHints = {
---           enable = true,
---           hideClosureInitialization = false,
---           hideNamedConstructor = false,
---         },
---         chainingHints = {
---           enable = true,
---         },
---         closingBraceHints = {
---           enable = true,
---           minLines = 25,
---         },
---         closureReturnTypeHints = {
---           enable = "never",
---         },
---         lifetimeElisionHints = {
---           enable = "never",
---           useParameterNames = false,
---           maxLength = 25,
---         },
---         parameterHints = {
---           enable = true,
---         },
---         reborrowHints = {
---           enable = "never",
---         },
---         renderColons = true,
---       },
---     },
---   },
--- }
+
+
+return opts
