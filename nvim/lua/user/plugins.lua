@@ -1,8 +1,9 @@
-local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local fn = vim.fn
 
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = vim.fn.system {
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = fn.system {
         "git",
         "clone",
         "--depth",
@@ -10,20 +11,34 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
         "https://github.com/wbthomason/packer.nvim",
         install_path,
     }
-    print "Installing packer. Close and reopen Neovim..."
+    print "Installing packer close and reopen Neovim..."
     vim.cmd [[packadd packer.nvim]]
 end
 
-vim.cmd([[
-augroup packer_user_config
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
-augroup end
-]])
+  augroup end
+]]
 
-return require("packer").startup(function(use)
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
 
-    -- Packer can manage itself
+-- Have packer use a popup window
+--[[packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}--]]
+
+return packer.startup(function(use)
     use "wbthomason/packer.nvim"
 
     -- colorscheme
@@ -50,21 +65,33 @@ return require("packer").startup(function(use)
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
     use "hrsh7th/cmp-nvim-lsp"
-    -- use "hrsh7th/cmp-nvim-lsp-signature-help"
-    use "L3MON4D3/LuaSnip"
-    use "saadparwaiz1/cmp_luasnip"
+    use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
     -- LSP
+    use "neovim/nvim-lspconfig"
+    use "williamboman/nvim-lsp-installer"
+    use "mattn/efm-langserver"
+
+
+
+    -- snippets
+    use "L3MON4D3/LuaSnip" --snippet engine
+    use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
+    -- colorschemes
+    use "morhetz/gruvbox"
+    use "sainnhe/sonokai"
+
+    -- fuzzyfinder
+    use "junegunn/fzf"
+    use "junegunn/fzf.vim"
     use {
         "neovim/nvim-lspconfig",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         -- "williamboman/nvim-lsp-installer",
     }
-<<<<<<< HEAD
     use "rust-lang/rust.vim"
-=======
->>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     use 'simrat39/rust-tools.nvim'
     use "lvimuser/lsp-inlayhints.nvim"
     use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
@@ -85,101 +112,116 @@ return require("packer").startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-    -- Telescope
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use 'nvim-telescope/telescope-media-files.nvim'
+    -- vimtest
+    use 'vim-test/vim-test'
 
-    -- Greeter
+    -- debugger
+    use 'szw/vim-maximizer'
+    use 'puremourning/vimspector'
+
+    -- vimwiki
+    use "vimwiki/vimwiki"
+    use "michal-h21/vim-zettel"
+    use "mattn/calendar-vim"
+    use "michal-h21/vimwiki-sync"
+
+    -- vim airline
+    use "vim-airline/vim-airline"
+
+    -- Treesitter
     use {
-        'goolord/alpha-nvim',
-        config = function()
-            require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-        end
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
     }
+    use "JoosepAlviste/nvim-ts-context-commentstring"
+    use "p00f/nvim-ts-rainbow"
+    use "romgrk/nvim-treesitter-context"
 
-    -- Illuminate words
-    use "RRethy/vim-illuminate"
-
-    -- NvimTree
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    }
-
-    -- comments
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
-    use {
-        "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
-    }
-
-    -- Git
-    use "lewis6991/gitsigns.nvim"
+    -- Git blame
     use "f-person/git-blame.nvim"
-    use "ruifm/gitlinker.nvim"
-    use "mattn/vim-gist"
-    use "mattn/webapi-vim"
+
+    -- Twilight
     use {
-        'pwntester/octo.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
-            'kyazdani42/nvim-web-devicons',
-        },
+        "folke/twilight.nvim",
         config = function()
-            require "octo".setup()
-        end
-    }
-
-    -- statusline
-    -- use {
-    --     "SmiteshP/nvim-navic",
-    --     requires = "neovim/nvim-lspconfig"
-    -- }
-
-    -- using packer.nvim
-    use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
-
-    -- whichkey
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {
+            require("twilight").setup {
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
             }
         end
     }
+    use {
+        "folke/zen-mode.nvim",
+        config = function()
+            require("zen-mode").setup {
+                window = {
+                    backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+                    -- height and width can be:
+                    -- * an absolute number of cells when > 1
+                    -- * a percentage of the width / height of the editor when <= 1
+                    -- * a function that returns the width or the height
+                    width = 120, -- width of the Zen window
+                    height = 1, -- height of the Zen window
+                    -- by default, no options are changed for the Zen window
+                    -- uncomment any of the options below, or add other vim.wo options you want to apply
+                    options = {
+                        -- signcolumn = "no", -- disable signcolumn
+                        -- number = false, -- disable number column
+                        -- relativenumber = false, -- disable relative numbers
+                        -- cursorline = false, -- disable cursorline
+                        -- cursorcolumn = false, -- disable cursor column
+                        -- foldcolumn = "0", -- disable fold column
+                        -- list = false, -- disable whitespace characters
+                    },
+                },
+                plugins = {
+                    -- disable some global vim options (vim.o...)
+                    -- comment the lines to not apply the options
+                    options = {
+                        enabled = true,
+                        ruler = false, -- disables the ruler text in the cmd line area
+                        showcmd = false, -- disables the command in the last line of the screen
+                    },
+                    twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+                    gitsigns = { enabled = false }, -- disables git signs
+                    tmux = { enabled = false }, -- disables the tmux statusline
+                    -- this will change the font size on kitty when in zen mode
+                    -- to make this work, you need to set the following kitty options:
+                    -- - allow_remote_control socket-only
+                    -- - listen_on unix:/tmp/kitty
+                    kitty = {
+                        enabled = false,
+                        font = "+4", -- font size increment
+                    },
+                },
+                -- callback where you can add custom code when the Zen window opens
+                on_open = function(win)
+                end,
+                -- callback where you can add custom code when the Zen window closes
+                on_close = function()
+                end,
+            }
+        end
+    }
 
-    -- css
-    use "ap/vim-css-color"
+    -- twilight alternative
+    -- use "junegunn/limelight.vim"
+
+    -- use "jamestthompson3/nvim-remote-containers"
+
+    -- quick-scope
+    use "unblevable/quick-scope"
 
     -- Julia
-    use "JuliaEditorSupport/julia-vim"
+    -- use "JuliaEditorSupport/julia-vim"
+    -- use "kdheepak/JuliaFormatter.vim"
 
-    -- Maximize panes
-    use "szw/vim-maximizer"
+    -- Slime
+    use "jpalardy/vim-slime"
 
-    -- Buffers
-    use 'matbme/JABS.nvim'
+    -- Copilot
+    use "github/copilot.vim"
 
     -- Debugging
     use 'mfussenegger/nvim-dap'
@@ -187,13 +229,16 @@ return require("packer").startup(function(use)
     use 'theHamsta/nvim-dap-virtual-text'
     use 'nvim-telescope/telescope-dap.nvim'
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
-<<<<<<< HEAD
     use 'mfussenegger/nvim-dap-python'
-=======
->>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
 
     -- Presentations
     use 'gyim/vim-boxdraw'
+    -- Julia LSP
+    -- use "haorenW1025/diagnostic-nvim"
+    -- use "neovim/nvim-lsp"
 
+    -- Undotree
+    use "mbbill/undotree"
 
-end)
+end
+)

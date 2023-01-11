@@ -1,33 +1,23 @@
 local map = vim.api.nvim_set_keymap
 local options = { noremap = true }
-local opts = { noremap = true, silent = true }
-
 
 -- map("", "<Space>", "<Nop>", options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- change directory
-map("n", "<leader>cd", ":cd %:p:h<CR>", options)
+map("n", "<leader>w", ":w<CR>", options)
+map("n", "<leader>q", ":q<CR>", options)
 
-map("n", "<C-w>", ":w<CR>", options)
-map("n", "<C-q>", ":q<CR>", options)
+map("n", "<leader>h", "<C-w>h", options)
+map("n", "<leader>j", "<C-w>j", options)
+map("n", "<leader>k", "<C-w>k", options)
+map("n", "<leader>l", "<C-w>l", options)
 
-map("n", "<C-h>", "<C-w>h", options)
-map("n", "<C-j>", "<C-w>j", options)
-map("n", "<C-k>", "<C-w>k", options)
-map("n", "<C-l>", "<C-w>l", options)
+map("n", "<leader>s", ":split<CR>", options)
+map("n", "<leader>v", ":vsplit<CR>", options)
 
-map("n", "<C-s>", ":split<CR>", options)
-map("n", "<C-v>", ":vsplit<CR>", options)
-
-<<<<<<< HEAD
 map("n", "<S-h>", ":bprev<CR>", options)
 map("n", "<S-l>", ":bnext<CR>", options)
-=======
-map("n", "<leader><Left>", ":bprev<CR>", options)
-map("n", "<leader><Right>", ":bnext<CR>", options)
->>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
 map("n", "<BACKSPACE>", ":bp|bd #<CR>", options)
 
 vim.cmd([[
@@ -68,7 +58,6 @@ map("n", "<C-m>", ":MaximizerToggle<CR>", opts)
 
 -- Presentation
 map("n", "<C-]>v", ":set spell! spelllang=en_us<CR>", opts)
-<<<<<<< HEAD
 --
 -- Copilot
 -- vim.g.copilot_filetypes = {
@@ -91,5 +80,10 @@ map("n", "<leader>tv", ":ToggleTermSendVisualLines<CR>", opts)
 -- Select all text in file
 map("n", "<leader>ta", "ggVG:ToggleTermSendVisualSelection<CR><C-o>", opts)
 
-=======
->>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+-- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)

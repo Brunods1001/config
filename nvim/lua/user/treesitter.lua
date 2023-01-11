@@ -1,31 +1,40 @@
-local status_ok, config = pcall(require, "nvim-treesitter.configs")
+local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
-    return
+  return
 end
-require'nvim-treesitter.configs'.setup {
-  highlight = {
+
+
+--[[
+configs.setup {
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  ignore_install = { "" }, -- List of parsers to ignore installing
+  autopairs = {
     enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    disable = { "julia" },
-    additional_vim_regex_highlighting = false,
   },
     indent = {
         enable = true,
-<<<<<<< HEAD
         disable = { "python", "julia" }
-=======
-        disable = { "julia" }
->>>>>>> 20df3bd79d60d0b4bc8302623df4076c4275e580
     },
     autopairs = {
         enable = true
     },
+  highlight = {
+    enable = true, -- false will disable the whole extension
+    disable = { "" }, -- list of language that will be disabled
+    additional_vim_regex_highlighting = true,
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
     rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil,
-    }
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  }
 }
+]]--
