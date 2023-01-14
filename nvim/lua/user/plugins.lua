@@ -30,6 +30,9 @@ return require("packer").startup(function(use)
     use "sainnhe/sonokai"
     use "folke/tokyonight.nvim"
 
+    -- leap
+    use "ggandor/leap.nvim"
+
     -- FZF
     use "junegunn/fzf"
     use "junegunn/fzf.vim"

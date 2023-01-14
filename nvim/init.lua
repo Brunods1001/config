@@ -1,3 +1,4 @@
+nvim
 require "user/options";
 require "user/copilot";
 require "user/keymaps";
@@ -5,6 +6,7 @@ require "user/netrw";
 require "user/plugins";
 require "user/colors";
 require "user/treesitter";
+require "user/leap";
 require "user/autopairs";
 require "user/cmp";
 require "user/lsp-inlayhints"
