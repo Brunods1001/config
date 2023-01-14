@@ -114,9 +114,9 @@ M.on_attach = function(client, bufnr)
     vim.notify("Attaching client and bufnr")
     vim.notify(client.name)
 
-  if client.name == "rust-analyzer" then
+  -- if client.name == "rust-analyzer" then
   require("lsp-inlayhints").on_attach(client, bufnr)
-  end
+  -- end
 
 end
 

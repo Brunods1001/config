@@ -25,6 +25,12 @@ map("n", "<S-h>", ":bprev<CR>", options)
 map("n", "<S-l>", ":bnext<CR>", options)
 map("n", "<BACKSPACE>", ":bp|bd #<CR>", options)
 
+-- go back to previous jump point
+map("n", "<C-o>", "<C-o>", options)
+-- go forward to next jump point
+map("n", "<C-i>", "<C-i>", options)
+
+
 vim.cmd([[
 " Use ESC to exit insert mode in :term
 tnoremap <Esc> <C-\><C-n><CR>
