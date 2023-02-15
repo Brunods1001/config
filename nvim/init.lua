@@ -1,7 +1,5 @@
-nvim
 require "user/options";
 require "user/copilot";
-require "user/keymaps";
 require "user/netrw";
 require "user/plugins";
 require "user/colors";
@@ -23,6 +21,7 @@ require "user/bufferline";
 require "user/whichkey";
 require "user/debugging";
 require "user/vimwiki";
+require "user/keymaps";
 
 -- require "lsp_signature".setup({
 --     bind = true, -- This is mandatory, otherwise border config won't get registered.

@@ -26,9 +26,9 @@ map("n", "<S-l>", ":bnext<CR>", options)
 map("n", "<BACKSPACE>", ":bp|bd #<CR>", options)
 
 -- go back to previous jump point
-map("n", "<C-o>", "<C-o>", options)
--- go forward to next jump point
-map("n", "<C-i>", "<C-i>", options)
+-- map("n", "<C-o>", "<C-o>", options)
+-- -- go forward to next jump point
+-- map("n", "<C-i>", "<C-i>", options)
 
 
 vim.cmd([[
@@ -37,12 +37,12 @@ tnoremap <Esc> <C-\><C-n><CR>
 ]])
 
 -- Telescope
-map(
-"n",
-"<tab>",
-"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-opts
-)
+-- map(
+-- "n",
+-- "<tab>",
+-- "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+-- opts
+-- )
 map(
   "n",
   "<s-tab>",
@@ -54,6 +54,7 @@ map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", options)
 map("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", options)
 map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", options)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", options)
+
 
 -- Nvimtree
 map("n", "<leader>e", ":NvimTreeToggle<cr>", opts)

@@ -172,8 +172,10 @@ local mappings = {
 
     f = {
         name = "Find",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+        B = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+        -- buffers
+        b = { "<cmd>Telescope buffers<cr>", "Buffers" },
         f = {
             "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
             "Find files",
