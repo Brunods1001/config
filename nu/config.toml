@@ -1,0 +1,3 @@
+startup = [
+	"alias nvim = /Applications/nvim-macos/bin/nvim"
+]

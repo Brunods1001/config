@@ -1,0 +1,98 @@
+{
+ "ConfigPath": {
+  "Path": "/Users/L021136/.config/containers/podman/machine/qemu/PISA.json"
+ },
+ "CmdLine": [
+  "/usr/local/bin/qemu-system-x86_64",
+  "-m",
+  "2048",
+  "-smp",
+  "2",
+  "-fw_cfg",
+  "name=opt/com.coreos/config,file=/Users/L021136/.config/containers/podman/machine/qemu/PISA.ign",
+  "-qmp",
+  "unix:/var/folders/pt/cjh310xs2zlcdnv4bnt0tnj40000gp/T/podman/qmp_PISA.sock,server=on,wait=off",
+  "-netdev",
+  "socket,id=vlan,fd=3",
+  "-device",
+  "virtio-net-pci,netdev=vlan,mac=5a:94:ef:e4:0c:ee",
+  "-device",
+  "virtio-serial",
+  "-chardev",
+  "socket,path=/var/folders/pt/cjh310xs2zlcdnv4bnt0tnj40000gp/T/podman/PISA_ready.sock,server=on,wait=off,id=aPISA_ready",
+  "-device",
+  "virtserialport,chardev=aPISA_ready,name=org.fedoraproject.port.0",
+  "-pidfile",
+  "/var/folders/pt/cjh310xs2zlcdnv4bnt0tnj40000gp/T/podman/PISA_vm.pid",
+  "-machine",
+  "q35,accel=hvf:tcg",
+  "-cpu",
+  "host",
+  "-virtfs",
+  "local,path=/Users,mount_tag=vol0,security_model=none",
+  "-virtfs",
+  "local,path=/private,mount_tag=vol1,security_model=none",
+  "-virtfs",
+  "local,path=/var/folders,mount_tag=vol2,security_model=none",
+  "-drive",
+  "if=virtio,file=/Users/L021136/.local/share/containers/podman/machine/qemu/PISA_fedora-coreos-38.20230527.2.0-qemu.x86_64.qcow2"
+ ],
+ "Rootful": false,
+ "UID": 502,
+ "IgnitionFilePath": {
+  "Path": "/Users/L021136/.config/containers/podman/machine/qemu/PISA.ign"
+ },
+ "ImageStream": "testing",
+ "ImagePath": {
+  "Path": "/Users/L021136/.local/share/containers/podman/machine/qemu/PISA_fedora-coreos-38.20230527.2.0-qemu.x86_64.qcow2"
+ },
+ "Mounts": [
+  {
+   "ReadOnly": false,
+   "Source": "/Users",
+   "Tag": "vol0",
+   "Target": "/Users",
+   "Type": "9p"
+  },
+  {
+   "ReadOnly": false,
+   "Source": "/private",
+   "Tag": "vol1",
+   "Target": "/private",
+   "Type": "9p"
+  },
+  {
+   "ReadOnly": false,
+   "Source": "/var/folders",
+   "Tag": "vol2",
+   "Target": "/var/folders",
+   "Type": "9p"
+  }
+ ],
+ "Name": "PISA",
+ "PidFilePath": {
+  "Path": "/var/folders/pt/cjh310xs2zlcdnv4bnt0tnj40000gp/T/podman/PISA_proxy.pid"
+ },
+ "VMPidFilePath": {
+  "Path": "/var/folders/pt/cjh310xs2zlcdnv4bnt0tnj40000gp/T/podman/PISA_vm.pid"
+ },
+ "QMPMonitor": {
+  "Address": {
+   "Path": "/var/folders/pt/cjh310xs2zlcdnv4bnt0tnj40000gp/T/podman/qmp_PISA.sock"
+  },
+  "Network": "unix",
+  "Timeout": 2000000000
+ },
+ "ReadySocket": {
+  "Path": "/var/folders/pt/cjh310xs2zlcdnv4bnt0tnj40000gp/T/podman/PISA_ready.sock"
+ },
+ "CPUs": 2,
+ "DiskSize": 20,
+ "Memory": 2048,
+ "IdentityPath": "/Users/L021136/.ssh/PISA",
+ "Port": 53717,
+ "RemoteUsername": "core",
+ "Starting": false,
+ "Created": "2023-06-07T10:34:50.303723-04:00",
+ "LastUp": "0001-01-01T00:00:00Z"
+}

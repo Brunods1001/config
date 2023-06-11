@@ -76,6 +76,17 @@ return require('packer').startup(function(use)
     use { "akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end }
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+        }
+    }
+    use "vimwiki/vimwiki"
+    use "michal-h21/vim-zettel"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

@@ -62,3 +62,5 @@ vim.api.nvim_set_keymap('n', '<leader><Tab>4', '4gt', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader><Tab>5', '5gt', { noremap = true })
 
 
+-- Vimwiki
+vim.api.nvim_set_keymap("i", "<F5>", "<C-R>=strftime('%T')<cr>", { noremap = true })
