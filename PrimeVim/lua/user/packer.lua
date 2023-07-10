@@ -30,6 +30,8 @@ return require('packer').startup(function(use)
     use "artanikin/vim-synthwave84"
     use "folke/tokyonight.nvim"
     use "morhetz/gruvbox"
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use { "svermeulen/text-to-colorscheme.nvim" }
     -- treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
