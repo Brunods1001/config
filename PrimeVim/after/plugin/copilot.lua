@@ -6,6 +6,8 @@
 vim.cmd [[
   imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")
   let g:copilot_no_tab_map = v:true
+  let g:copilot_proxy="foo:bar@proxy.gtm.lilly.com:9000"
+  let g:copilot_proxy_strict_ssl = v:false
 ]]
 
 local status_ok, copilot = pcall(require, "copilot")

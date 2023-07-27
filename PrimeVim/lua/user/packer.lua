@@ -90,6 +90,14 @@ return require('packer').startup(function(use)
     use "vimwiki/vimwiki"
     use "michal-h21/vim-zettel"
 
+    -- debugger
+    use "mfussenegger/nvim-dap"
+    use "rcarriga/nvim-dap-ui"
+    use "theHamsta/nvim-dap-virtual-text"
+    use "nvim-telescope/telescope-dap.nvim"
+    use "mfussenegger/nvim-dap-python"
+    use "leoluz/nvim-dap-go"
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
