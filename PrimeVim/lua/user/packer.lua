@@ -73,6 +73,7 @@ return require('packer').startup(function(use)
     use "simrat39/inlay-hints.nvim"
     -- use "lvimuser/lsp-inlayhints.nvim"
     use "simrat39/rust-tools.nvim"
+    use "nvim-lua/plenary.nvim"
     --
     use "github/copilot.vim"
     use { "akinsho/toggleterm.nvim", tag = '*', config = function()
@@ -87,8 +88,29 @@ return require('packer').startup(function(use)
             "MunifTanjim/nui.nvim",
         }
     }
-    use "vimwiki/vimwiki"
+    use {
+        "vimwiki/vimwiki",
+        config = function()
+            vim.g.vimwiki_list = {
+                {
+                    path = "~/vimwiki/",
+                    syntax = "markdown",
+                    ext = ".md",
+                    custom_wiki2html = 'vimwiki_markdown',
+                },
+            }
+        end
+    }
     use "michal-h21/vim-zettel"
+    use "folke/zen-mode.nvim"
+    --
+    -- Debugging
+    use "mfussenegger/nvim-dap"
+    use "mfussenegger/nvim-dap-python"
+    use "leoluz/nvim-dap-go"
+    use "theHamsta/nvim-dap-virtual-text"
+    use "nvim-telescope/telescope-dap.nvim"
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
     -- debugger
     use "mfussenegger/nvim-dap"
