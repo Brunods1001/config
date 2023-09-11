@@ -48,6 +48,12 @@ return require('packer').startup(function(use)
     use("tpope/vim-fugitive")
     use("tpope/vim-commentary")
     -- lsp
+    use { "jay-babu/mason-nvim-dap.nvim",
+        requires = {
+            "williamboman/mason.nvim",
+            "mfussenegger/nvim-dap",
+        }
+    }
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
@@ -70,6 +76,9 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
+    -- julia
+    use 'JuliaEditorSupport/julia-vim'
+
     use "simrat39/inlay-hints.nvim"
     -- use "lvimuser/lsp-inlayhints.nvim"
     use "simrat39/rust-tools.nvim"
@@ -89,6 +98,13 @@ return require('packer').startup(function(use)
         }
     }
     use {
+        's1n7ax/nvim-window-picker',
+        tag = 'v2.*',
+        config = function()
+            require 'window-picker'.setup()
+        end,
+    }
+    use {
         "vimwiki/vimwiki",
         config = function()
             vim.g.vimwiki_list = {
@@ -101,7 +117,10 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use "jremmen/vim-ripgrep"
     use "michal-h21/vim-zettel"
+    use "junegunn/fzf"
+    use "junegunn/fzf.vim"
     use "folke/zen-mode.nvim"
     --
     -- Debugging
@@ -111,14 +130,6 @@ return require('packer').startup(function(use)
     use "theHamsta/nvim-dap-virtual-text"
     use "nvim-telescope/telescope-dap.nvim"
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
-
-    -- debugger
-    use "mfussenegger/nvim-dap"
-    use "rcarriga/nvim-dap-ui"
-    use "theHamsta/nvim-dap-virtual-text"
-    use "nvim-telescope/telescope-dap.nvim"
-    use "mfussenegger/nvim-dap-python"
-    use "leoluz/nvim-dap-go"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
