@@ -14,6 +14,7 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
+    use 'nvim-tree/nvim-web-devicons'
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
         -- or                            , branch = '0.1.x',
@@ -43,7 +44,12 @@ return require('packer').startup(function(use)
     use("nvim-treesitter/playground")
     use("nvim-treesitter/nvim-treesitter-context")
     --
-    use("theprimeagen/harpoon")
+    -- use("theprimeagen/harpoon")
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    }
     use("mbbill/undotree")
     use("tpope/vim-fugitive")
     use("tpope/vim-commentary")
@@ -130,6 +136,11 @@ return require('packer').startup(function(use)
     use "theHamsta/nvim-dap-virtual-text"
     use "nvim-telescope/telescope-dap.nvim"
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+
+    use "jpalardy/vim-slime"
+
+    -- Venn
+    use "jbyuki/venn.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

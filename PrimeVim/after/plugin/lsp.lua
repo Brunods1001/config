@@ -15,6 +15,7 @@ lsp.ensure_installed({
     'eslint',
     'lua_ls',
     'pyright',
+    'ruff_lsp',
     'rust_analyzer',
     'julials'
 })
@@ -62,59 +63,67 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+    if client.name == "ruff_lsp" then
+        client.server_capabilities.hoverProvider = false
+    end
 end)
 
-lsp.skip_server_setup({ 'rust_analyzer', 'julials' })
+-- lsp.skip_server_setup({ 'rust_analyzer' })
+
+-- Rust analyzer
+-- lspconfig.rust_analyzer.setup({
+--     on_attach = function(_, bufnr)
+--         -- Key mappings for LSP functions
+--         local opts = { noremap=true, silent=true }
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+--     end,
+--     filetypes={'rust'},
+--     root_dir=lspconfig.util.root_pattern("Cargo.toml"),
+--     settings = {
+--         ["rust-analyzer"] = {
+--             assist = {
+--                 importGranularity = "module",
+--                 importPrefix = "by_self",
+--             },
+--             cargo = {
+--                 loadOutDirsFromCheck = true,
+--                 allFeatures = true,
+--                 features = {"ssr"},
+--             },
+--             procMacro = {
+--                 enable = true
+--             },
+--         }
+--     }
+-- })
+
 
 -- Julia for Genie
 function InitializeJuliaLSP()
     local bootstrap_path = vim.fn.getcwd() .. "/bootstrap.jl"
 
-    if vim.fn.filereadable(bootstrap_path) == 1 then
-        print("Bootstrap path found at " .. bootstrap_path)
-        lsp.julials.setup({
+    local bootstrap_path = vim.fn.getcwd() .. "/bootstrap.jl"
+    if vim.fn.filereadable(bootstrap_path) == 2 then
+        print("Found bootstrap path at " .. bootstrap_path)
+        lspconfig.julials.setup {
             cmd = {
                 "julia",
                 "--project=" .. vim.fn.getcwd(),
+                "--startup-file=no",
+                "--history-file=no",
                 "-e", [[
-                    open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                        println(io, "Which Julia: ", Base.julia_exename());
-                    end
-                    # Write hello to a log file at vim.fn.getcwd()
-                    open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                        println(io, "Hello from Julia Language Server")
-                    end
-                    using LanguageServer; using Pkg; import StaticLint; import SymbolServer;
-                    open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                        println(io, "Loaded packages")
-                    end
-                    include("]] .. bootstrap_path .. [[");
-                    open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                        println(io, "Included bootstrap path");
-                    end
-                    env_path = dirname(Pkg.Types.Context().env.project_file);
-                    server = LanguageServer.LanguageServerInstance(stdin, stdout, false, env_path, "");
-                    server.runlinter = true;
-                    open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                        println(io, "Server created: ", server);
-                    end
-                    run(server);
-                ]]
-            },
-        })
-    end
-end
-
-local bootstrap_path = vim.fn.getcwd() .. "/bootstrap.jl"
-if vim.fn.filereadable(bootstrap_path) == 2 then
-    print("Found bootstrap path at " .. bootstrap_path)
-    lspconfig.julials.setup {
-        cmd = {
-            "julia",
-            "--project=" .. vim.fn.getcwd(),
-            "--startup-file=no",
-            "--history-file=no",
-            "-e", [[
         try
             open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
                 println(io, "Which Julia: ", Base.julia_exename());
@@ -150,11 +159,12 @@ if vim.fn.filereadable(bootstrap_path) == 2 then
             end
         end
     ]]
+            }
         }
-    }
-else
-    print("Did not find bootstrap path at " .. bootstrap_path)
-    lspconfig.julials.setup {}
+    else
+        print("Did not find bootstrap path at " .. bootstrap_path)
+        lspconfig.julials.setup {}
+    end
 end
 
 lsp.setup()
@@ -182,7 +192,6 @@ rust_tools.setup({
         hover_actions = {
             auto_focus = false,
         },
-
     },
     server = {
         on_attach = function(client, bufnr)
@@ -199,6 +208,24 @@ rust_tools.setup({
             vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
             vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
             vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        end
+        end,
+        filetypes={'rust'},
+        root_dir=lspconfig.util.root_pattern("Cargo.toml"),
+        settings = {
+            ["rust-analyzer"] = {
+                assist = {
+                    importGranularity = "module",
+                    importPrefix = "by_self",
+                },
+                cargo = {
+                    loadOutDirsFromCheck = true,
+                    allFeatures = true,
+                    features = {"ssr"},
+                },
+                procMacro = {
+                    enable = true
+                },
+            }
+        }
     }
 })
