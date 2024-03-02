@@ -72,8 +72,5 @@ vim.api.nvim_set_keymap("i", "<F5>", "<C-R>=strftime('%T')<cr>", { noremap = tru
 vim.api.nvim_set_keymap("n", "<leader>tag", ":Rg '^:.*:$'<CR>", { noremap = true })
 
 print("Remaps loaded")
-print("Loading Julia LSP")
 
--- Julia for Genie
-vim.api.nvim_set_keymap("n", "<leader>jl", ":lua InitializeJuliaLSP()<CR>", { noremap = true })
 

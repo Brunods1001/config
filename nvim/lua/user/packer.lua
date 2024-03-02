@@ -82,8 +82,6 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
-    -- julia
-    use 'JuliaEditorSupport/julia-vim'
 
     use "simrat39/inlay-hints.nvim"
     -- use "lvimuser/lsp-inlayhints.nvim"

@@ -17,7 +17,6 @@ lsp.ensure_installed({
     'pyright',
     'ruff_lsp',
     'rust_analyzer',
-    'julials'
 })
 
 -- Fix Undefined global 'vim'
@@ -110,62 +109,6 @@ end)
 -- })
 
 
--- Julia for Genie
-function InitializeJuliaLSP()
-    local bootstrap_path = vim.fn.getcwd() .. "/bootstrap.jl"
-
-    local bootstrap_path = vim.fn.getcwd() .. "/bootstrap.jl"
-    if vim.fn.filereadable(bootstrap_path) == 2 then
-        print("Found bootstrap path at " .. bootstrap_path)
-        lspconfig.julials.setup {
-            cmd = {
-                "julia",
-                "--project=" .. vim.fn.getcwd(),
-                "--startup-file=no",
-                "--history-file=no",
-                "-e", [[
-        try
-            open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                println(io, "Which Julia: ", Base.julia_exename());
-            end
-            # Write hello to a log file at vim.fn.getcwd()
-            open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                println(io, "Hello from Julia Language Server");
-            end
-            using LanguageServer; using Pkg; import StaticLint; import SymbolServer;
-            open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                println(io, "Loaded packages");
-            end
-            # include("]] .. bootstrap_path .. [[");
-            open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                println(io, "Included bootstrap path");
-            end
-            env_path = dirname(Pkg.Types.Context().env.project_file);
-            server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
-            server.runlinter = true;
-            open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                println(io, "Server created: ", stdin, stdout, env_path);
-                println(io, "running backend");
-            end
-            using Backend;
-            Backend.main();
-            open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                println(io, "Backend module: ", Backend);
-            end
-            run(server, Backend);
-        catch e
-            open("]] .. vim.fn.getcwd() .. [[/hello.txt", "a") do io
-                println(io, "Error: ", e, "\nType: ", typeof(e), "\nAt: ", stacktrace());
-            end
-        end
-    ]]
-            }
-        }
-    else
-        print("Did not find bootstrap path at " .. bootstrap_path)
-        lspconfig.julials.setup {}
-    end
-end
 
 lsp.setup()
 
